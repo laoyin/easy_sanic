@@ -11,18 +11,67 @@ easy sanic framework.
 
 url:
 ```python
-from views.xauth import ProvilegeRole   
+from yourview.py import YourClass
 def app_url(app):
-    app.router.add(uri='/token', methods=['GET'], handler=ProvilegeRole().as_views)
+    app.router.add(uri='/hello', methods=['GET'], handler=YourClass().as_views)
 
 ```
+
+```python
+'''yourviews.py'''
+from sanic.response import json
+from easy_sanic.restful.operation_handler import ResourceBase, operation
+
+class RestStatus:
+
+    @classmethod
+    def response_status(cls, ret, message, data=""):
+        return json({"ret": ret, "message": message, "data":data})
+
+
+class YourClass(ResourceBase):
+
+    async def get(self, request):
+        return RestStatus.response_status(200, "ok", data=data)
+
+    async def post(self, request):
+        request_data = request.form
+        return RestStatus.response_status(200, "ok", data=data)
+
+    def delete(self, request):
+        print("i am delete")
+        return RestStatus.response_status(400, "request method error")
+
+    @operation(flag=True)
+    def custom_url(self, request):
+        print("i am print hh")
+
+        return RestStatus.response_status(400, "request method error")
+
+    @operation(flag=False)
+    def hello(self, request):
+        print("afwefaewfaw")
+        return RestStatus.response_status(200, "pengfeng")
+
+
+```
+
+现在你可以通过url 进行 get、post、delete 访问了，支持http（get、post、delete、put）
+同时可以自定义方法
+
+使用operation， flag=True 为get方法， False 为 post方法，使用如下：
+
+
+http://127.0.0.1:port/hello?operation=custom_url
+
+
 
 
 如何定义orm models：
 orm:
 models.py
 ```python
-from db.orm import SqlObject, FieldObject, TableName
+from easy_sanic.db.orm import SqlObject, FieldObject, TableName
 
 #User message
 class User(metaclass=SqlObject):
@@ -33,31 +82,13 @@ class User(metaclass=SqlObject):
 
 ```
 
-如何定义views， 同时views 支持get、post、delete、put方法，并支持自定义扩展。
-自定义扩展只限定在get、post请求。
 
-使用装饰器 operation进行装饰，flag = True 表示get方法，False代表post方法。
+如何使用model orm
 
 
-比如 请求 get  http://127.0.0.1:/token/ 不能满足您的需求，您需要自定义其他方法
-
+在view 里面
 ```python
-    @operation(flag=True)
-    def print_hh(self, request):
-        print("i am print hh")
-
-        return RestStatus.response_status(400, "request method error")
-
-```
-那么您即可通过 http://127.0.0.1:/token/?operation=print_hh 获取资源。
-
-
-
-views:
-xauth.py
-```python
-from db.dao import User
-from restful.operation_headler import ResourceBase, operation
+from easy_sanic.restful.operation_headler import ResourceBase, operation
 
 
 class ProvilegeRole(ResourceBase):
@@ -69,25 +100,11 @@ class ProvilegeRole(ResourceBase):
         print(data)
         return RestStatus.response_status(200, "ok", data=data)
 
-    async def post(self, request):
-        request_data = request.form
-        return RestStatus.response_status(200, "ok", data=data)
-
-    def delete(self, request):
-        print("i am delete")
-
-        return RestStatus.response_status(400, "request method error")
-
-    @operation(flag=True)
-    def print_hh(self, request):
-        print("i am print hh")
-
-        return RestStatus.response_status(400, "request method error")
 ```
-    
-    
-how to create all table
-init_sql_table.py
+
+其中 model.filter、model.save  必须传递request方法
+
+
 
 
 
