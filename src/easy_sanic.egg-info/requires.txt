@@ -1,0 +1,7 @@
+sanic==0.8.3
+PyJWT==1.7.1
+requests==2.21.0
+aioredis==1.2.0
+opentracing==2.0.0
+asyncpg==0.18.3
+aiohttp==3.5.4

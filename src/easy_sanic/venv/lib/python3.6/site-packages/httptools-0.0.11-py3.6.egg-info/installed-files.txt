@@ -1,0 +1,12 @@
+../httptools/__init__.py
+../httptools/parser/__init__.py
+../httptools/parser/errors.py
+../httptools/parser/parser.c
+../httptools/__pycache__/__init__.cpython-36.pyc
+../httptools/parser/__pycache__/__init__.cpython-36.pyc
+../httptools/parser/__pycache__/errors.cpython-36.pyc
+../httptools/parser/parser.cpython-36m-darwin.so
+PKG-INFO
+SOURCES.txt
+top_level.txt
+dependency_links.txt
