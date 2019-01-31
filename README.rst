@@ -129,7 +129,6 @@ app.py
     if __name__ == '__main__':
         print(init_text)
         app.run(host='0.0.0.0', port=7001)
-```
 
 
 如何定义url：
@@ -143,40 +142,40 @@ url:
 
 
 .. code:: python
-'''yourviews.py'''
-from sanic.response import json
-from easy_sanic.restful.operation_handler import ResourceBase, operation
+    '''yourviews.py'''
+    from sanic.response import json
+    from easy_sanic.restful.operation_handler import ResourceBase, operation
 
-class RestStatus:
+    class RestStatus:
 
-    @classmethod
-    def response_status(cls, ret, message, data=""):
-        return json({"ret": ret, "message": message, "data":data})
+        @classmethod
+        def response_status(cls, ret, message, data=""):
+            return json({"ret": ret, "message": message, "data":data})
 
 
-class YourClass(ResourceBase):
+    class YourClass(ResourceBase):
 
-    async def get(self, request):
-        return RestStatus.response_status(200, "ok", data=data)
+        async def get(self, request):
+            return RestStatus.response_status(200, "ok", data=data)
 
-    async def post(self, request):
-        request_data = request.form
-        return RestStatus.response_status(200, "ok", data=data)
+        async def post(self, request):
+            request_data = request.form
+            return RestStatus.response_status(200, "ok", data=data)
 
-    def delete(self, request):
-        print("i am delete")
-        return RestStatus.response_status(400, "request method error")
+        def delete(self, request):
+            print("i am delete")
+            return RestStatus.response_status(400, "request method error")
 
-    @operation(flag=True)
-    def custom_url(self, request):
-        print("i am print hh")
+        @operation(flag=True)
+        def custom_url(self, request):
+            print("i am print hh")
 
-        return RestStatus.response_status(400, "request method error")
+            return RestStatus.response_status(400, "request method error")
 
-    @operation(flag=False)
-    def hello(self, request):
-        print("afwefaewfaw")
-        return RestStatus.response_status(200, "pengfeng")
+        @operation(flag=False)
+        def hello(self, request):
+            print("afwefaewfaw")
+            return RestStatus.response_status(200, "pengfeng")
 
 
 
