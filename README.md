@@ -1,5 +1,3 @@
-gunicorn app:app --bind 0.0.0.0:7001 --worker-class sanic.worker.GunicornWorker -w 2
-
 easy sanic 框架，集成了sanic，同时自定义async orm， （目前支持postgres）
 easyrestful。简单好用，你可以完全不用掌握python3 aysncio相关知识 也能写出高性能服务。
 
@@ -74,6 +72,9 @@ async def before_server_stop(app, loop):
     await app.service.deregister()
     app.queue.join()
 
+if __name__ == '__main__':
+    print(init_text)
+    app.run(host='0.0.0.0', port=7001)
 ```
 
 
@@ -187,4 +188,5 @@ with await request.app.conn as conn:
 ```
 
 
-
+部署：
+gunicorn app:app --bind 0.0.0.0:7001 --worker-class sanic.worker.GunicornWorker -w 2
