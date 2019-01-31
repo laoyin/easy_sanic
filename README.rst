@@ -100,8 +100,7 @@ app.py
 
     @app.listener('before_server_start')
     async def before_server_start(app, loop):
-        # 引用url
-        app_url(app)
+        app_url(app)# 引用url
         queue = asyncio.Queue()
         app.queue = queue
         app.db = await ConnectionPool(loop=loop).init(app.config['DB_CONFIG'])
