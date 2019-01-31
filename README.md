@@ -1,3 +1,51 @@
+Build status
+.. image:: https://raw.githubusercontent.com/huge-success/sanic-assets/master/png/sanic-framework-logo-400x97.png
+    :alt: Sanic | Build fast. Run fast.
+
+Sanic | Build fast. Run fast.
+=============================
+
+.. start-badges
+
+.. list-table::
+    :stub-columns: 1
+
+    * - Build
+      - | |Build Status| |AppVeyor Build Status| |Codecov|
+    * - Docs
+      - |Documentation|
+    * - Package
+      - | |PyPI| |PyPI version| |Wheel| |Supported implementations| |Code style black|
+    * - Support
+      - | |Forums| |Join the chat at https://gitter.im/sanic-python/Lobby|
+
+.. |Forums| image:: https://img.shields.io/badge/forums-community-ff0068.svg
+   :target: https://community.sanicframework.org/
+.. |Join the chat at https://gitter.im/sanic-python/Lobby| image:: https://badges.gitter.im/sanic-python/Lobby.svg
+   :target: https://gitter.im/sanic-python/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+.. |Codecov| image:: https://codecov.io/gh/huge-success/sanic/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/huge-success/sanic
+.. |Build Status| image:: https://travis-ci.org/huge-success/sanic.svg?branch=master
+   :target: https://travis-ci.org/huge-success/sanic
+.. |AppVeyor Build Status| image:: https://ci.appveyor.com/api/projects/status/d8pt3ids0ynexi8c/branch/master?svg=true
+   :target: https://ci.appveyor.com/project/huge-success/sanic
+.. |Documentation| image:: https://readthedocs.org/projects/sanic/badge/?version=latest
+   :target: http://sanic.readthedocs.io/en/latest/?badge=latest
+.. |PyPI| image:: https://img.shields.io/pypi/v/sanic.svg
+   :target: https://pypi.python.org/pypi/sanic/
+.. |PyPI version| image:: https://img.shields.io/pypi/pyversions/sanic.svg
+   :target: https://pypi.python.org/pypi/sanic/
+.. |Code style black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/ambv/black
+.. |Wheel| image:: https://img.shields.io/pypi/wheel/sanic.svg
+    :alt: PyPI Wheel
+    :target: https://pypi.python.org/pypi/sanic
+.. |Supported implementations| image:: https://img.shields.io/pypi/implementation/sanic.svg
+    :alt: Supported implementations
+    :target: https://pypi.python.org/pypi/sanic
+
+.. end-badges
+
 easy sanic 框架，集成了sanic，同时自定义async orm， （目前支持postgres）
 easyrestful。简单好用，你可以完全不用掌握python3 aysncio相关知识 也能写出高性能服务。
 

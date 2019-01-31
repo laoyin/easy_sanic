@@ -2,4 +2,7 @@
 from . import db
 from . import restful
 from . import utils
-__all__=["db", "restful", "utils"]
+
+__version__ = '0.0.2'
+
+__all__=["db", "restful", "utils", "__version__"]

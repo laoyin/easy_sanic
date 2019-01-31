@@ -1,8 +1,8 @@
 Metadata-Version: 1.0
 Name: easy-sanic
-Version: 0.0.1
+Version: 0.0.2
 Summary: easily build sanic project, powerful orm and restful
-Home-page: UNKNOWN
+Home-page: https://github.com/laoyin/easy_sanic
 Author: yinxingpan
 Author-email: yinxingpan@163.com
 License: UNKNOWN
