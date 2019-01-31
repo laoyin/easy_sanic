@@ -1,4 +1,4 @@
-Build status
+
 .. image:: https://raw.githubusercontent.com/huge-success/sanic-assets/master/png/sanic-framework-logo-400x97.png
     :alt: Sanic | Build fast. Run fast.
 
