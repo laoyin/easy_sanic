@@ -73,8 +73,7 @@ app.py
     from easy_sanic.utils.aio_redis import SanicRedis
     from easy_sanic.db.db import ConnectionPool
 
-    # 此处url 为之定义url文件，需要自己添加，文档有介绍如何引用
-    from url import app_url
+    from url import app_url  # 此处url 为之定义url文件，需要自己添加，文档有介绍如何引用
 
     app = Sanic(__name__)
 
@@ -142,7 +141,7 @@ url:
 
 
 .. code:: python
-    '''yourviews.py'''
+    #yourviews.py
     from sanic.response import json
     from easy_sanic.restful.operation_handler import ResourceBase, operation
 
