@@ -60,8 +60,9 @@ easy sanic 目标是 快速打造微服务。
 easy sanic framework.
 
 
-创建项目入口：
-app.py
+创建项目入口：app.py
+
+
 .. code:: python
 
     import asyncio
@@ -209,7 +210,6 @@ models.py
 在view 里面
 .. code:: python
     from easy_sanic.restful.operation_headler import ResourceBase, operation
-
 
     class ProvilegeRole(ResourceBase):
 
