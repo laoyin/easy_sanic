@@ -18,7 +18,6 @@ from sanic import Sanic
 from aioredis import create_redis_pool
 
 from easy_sanic.utils.ascci_helper import init_text
-from easy_sanic.utils.jwt_helper import JwtHelper
 from easy_sanic.utils.aio_redis import SanicRedis
 from easy_sanic.db.db import ConnectionPool
 
