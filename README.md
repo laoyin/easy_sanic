@@ -7,6 +7,77 @@ easy sanic 目标是 快速打造微服务。
 
 easy sanic framework.
 
+
+创建项目入口：
+app.py
+```python
+
+import asyncio
+import opentracing
+from sanic import Sanic
+from aioredis import create_redis_pool
+
+from easy_sanic.utils.ascci_helper import init_text
+from easy_sanic.utils.jwt_helper import JwtHelper
+from easy_sanic.utils.aio_redis import SanicRedis
+from easy_sanic.db.db import ConnectionPool
+
+# 此处url 为之定义url文件，需要自己添加，文档有介绍如何引用
+from url import app_url
+
+app = Sanic(__name__)
+
+app.config.update({
+    'DB_CONFIG':{
+        'user':'postgres',
+        'password':'password',
+        'database':'',
+        'host':'',
+        'port':''
+    }
+})
+redis_conf = {
+            'REDIS':{
+                'address': ("REDIS_HOST", "REDIS_PORT"),
+                'db': "REDIS_DB",
+            }
+        }
+
+redis_conf['REDIS']['password'] = "REDIS_PASSWORD"
+
+app.config.update(redis_conf)
+
+
+@app.listener('before_server_start')
+async def before_server_start(app, loop):
+    # 引用url
+    app_url(app)
+    queue = asyncio.Queue()
+    app.queue = queue
+    app.db = await ConnectionPool(loop=loop).init(app.config['DB_CONFIG'])
+
+    _c = dict(loop=loop)
+    config = app.config.get('REDIS')
+    for key in ['address', 'db', 'password', 'ssl', 'encoding', 'minsize',
+                'maxsize', 'create_connection_timeout']:
+        if key in config:
+            _c.update({key: config.get(key)})
+    _redis = await create_redis_pool(**_c)
+
+    app.redis = _redis
+    app.conn = _redis
+
+
+@app.listener('before_server_stop')
+async def before_server_stop(app, loop):
+    app.redis.close()
+    await app.redis.wait_closed()
+    await app.service.deregister()
+    app.queue.join()
+
+```
+
+
 如何定义url：
 
 url:
@@ -105,6 +176,16 @@ class ProvilegeRole(ResourceBase):
 其中 model.filter、model.save  必须传递request方法
 
 
+
+
+目前支持postgres，redis
+
+redis的使用：
+```python
+with await request.app.conn as conn:
+    # await conn.get("NOT_RESTRICT_URL") restrict
+    url_status = await conn.execute('SISMEMBER', "key", "value")
+```
 
 
 
