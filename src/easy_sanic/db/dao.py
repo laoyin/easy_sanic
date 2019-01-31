@@ -1,5 +1,5 @@
 #coding=utf-8
-from db.orm import SqlObject, FieldObject, TableName, BaseObject
+from easy_sanic.db.orm import SqlObject, FieldObject, TableName, BaseObject
 
 #User message
 class User(BaseObject):

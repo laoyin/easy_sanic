@@ -90,7 +90,7 @@ easy sanic framework.
     redis_conf = {
                 'REDIS':{
                     'address': ("REDIS_HOST", "REDIS_PORT"),
-                    'db': "REDIS_DB",
+                    'db': 1,
                 }
             }
 
