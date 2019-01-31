@@ -75,6 +75,9 @@ async def before_server_stop(app, loop):
     await app.service.deregister()
     app.queue.join()
 
+if __name__ == '__main__':
+    print(init_text)
+    app.run(host='0.0.0.0', port=7001)
 ```
 
 
