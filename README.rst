@@ -62,7 +62,7 @@ easy sanic framework.
 
 创建项目入口：
 app.py
-```python
+.. code:: python
 
 import asyncio
 import opentracing
@@ -135,14 +135,14 @@ if __name__ == '__main__':
 如何定义url：
 
 url:
-```python
-from yourview.py import YourClass
-def app_url(app):
-    app.router.add(uri='/hello', methods=['GET'], handler=YourClass().as_views)
+.. code:: python
+    from yourview.py import YourClass
+    def app_url(app):
+        app.router.add(uri='/hello', methods=['GET'], handler=YourClass().as_views)
 
-```
 
-```python
+
+.. code:: python
 '''yourviews.py'''
 from sanic.response import json
 from easy_sanic.restful.operation_handler import ResourceBase, operation
@@ -179,7 +179,6 @@ class YourClass(ResourceBase):
         return RestStatus.response_status(200, "pengfeng")
 
 
-```
 
 现在你可以通过url 进行 get、post、delete 访问了，支持http（get、post、delete、put）
 同时可以自定义方法
@@ -195,37 +194,35 @@ http://127.0.0.1:port/hello?operation=custom_url
 如何定义orm models：
 orm:
 models.py
-```python
-from easy_sanic.db.orm import SqlObject, FieldObject, TableName
+.. code:: python
+    from easy_sanic.db.orm import SqlObject, FieldObject, TableName
 
-#User message
-class User(metaclass=SqlObject):
-    id = FieldObject('id', 'varchar(200) primary key')
-    name = FieldObject('name', 'varchar(200)')
-    password = FieldObject('password', 'varchar(200)')
-    table_name = TableName('users')
+    #User message
+    class User(metaclass=SqlObject):
+        id = FieldObject('id', 'varchar(200) primary key')
+        name = FieldObject('name', 'varchar(200)')
+        password = FieldObject('password', 'varchar(200)')
+        table_name = TableName('users')
 
-```
 
 
 如何使用model orm
 
 
 在view 里面
-```python
-from easy_sanic.restful.operation_headler import ResourceBase, operation
+.. code:: python
+    from easy_sanic.restful.operation_headler import ResourceBase, operation
 
 
-class ProvilegeRole(ResourceBase):
+    class ProvilegeRole(ResourceBase):
 
-    async def get(self, request):
-        data = await User.filter(request, id='yinxingpan')
-        new_obj = User(id="yinxingpan", name="haha2", password="123")
-        result = await new_obj.save(request)
-        print(data)
-        return RestStatus.response_status(200, "ok", data=data)
+        async def get(self, request):
+            data = await User.filter(request, id='yinxingpan')
+            new_obj = User(id="yinxingpan", name="haha2", password="123")
+            result = await new_obj.save(request)
+            print(data)
+            return RestStatus.response_status(200, "ok", data=data)
 
-```
 
 其中 model.filter、model.save  必须传递request方法
 
@@ -235,11 +232,10 @@ class ProvilegeRole(ResourceBase):
 目前支持postgres，redis
 
 redis的使用：
-```python
-with await request.app.conn as conn:
-    # await conn.get("NOT_RESTRICT_URL") restrict
-    url_status = await conn.execute('SISMEMBER', "key", "value")
-```
+.. code:: python
+    with await request.app.conn as conn:
+        # await conn.get("NOT_RESTRICT_URL") restrict
+        url_status = await conn.execute('SISMEMBER', "key", "value")
 
 
 部署：
