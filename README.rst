@@ -133,7 +133,10 @@ easy sanic framework.
 如何定义url：
 
 url:
+
+
 .. code:: python
+
     from yourview.py import YourClass
     def app_url(app):
         app.router.add(uri='/hello', methods=['GET'], handler=YourClass().as_views)
@@ -141,6 +144,7 @@ url:
 
 
 .. code:: python
+
     #yourviews.py
     from sanic.response import json
     from easy_sanic.restful.operation_handler import ResourceBase, operation
@@ -192,7 +196,9 @@ http://127.0.0.1:port/hello?operation=custom_url
 如何定义orm models：
 orm:
 models.py
+
 .. code:: python
+
     from easy_sanic.db.orm import SqlObject, FieldObject, TableName
 
     #User message
@@ -208,7 +214,9 @@ models.py
 
 
 在view 里面
+
 .. code:: python
+
     from easy_sanic.restful.operation_headler import ResourceBase, operation
 
     class ProvilegeRole(ResourceBase):
@@ -229,7 +237,9 @@ models.py
 目前支持postgres，redis
 
 redis的使用：
+
 .. code:: python
+
     with await request.app.conn as conn:
         # await conn.get("NOT_RESTRICT_URL") restrict
         url_status = await conn.execute('SISMEMBER', "key", "value")
