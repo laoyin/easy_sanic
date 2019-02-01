@@ -59,6 +59,11 @@ easy sanic 目标是 快速打造微服务。
 
 easy sanic framework.
 
+如何安装：linux环境直接： 
+
+.. code::
+    pip install easy_sanic
+
 
 创建项目入口：app.py
 
