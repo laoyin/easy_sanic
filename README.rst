@@ -61,7 +61,8 @@ easy sanic framework.
 
 如何安装：linux环境直接： 
 
-.. code::
+.. code:: shell
+
     pip install easy_sanic
 
 
