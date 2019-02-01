@@ -136,6 +136,32 @@ class SqlObject(type):
             data = await cur.fetch(sql)
             return data
 
+    async def delete(self, request, **kwargs):
+
+        field_list = []
+        for k, v in self.__mapping__.items():
+            field_list.append(
+                "{field_name}".format(field_name=v.field_name)
+            )
+        sql_field_name = ",".join(field_list)
+
+        condition_list = []
+        for k, v in kwargs.items():
+            if k not in self.__mapping__:
+                raise Exception("field error")
+            # condition_list.append("{k}='{v}'".format(k=k, v=v))
+            condition_list.append(update_field_value_template(self.__mapping__[k], k, v))
+        if condition_list:
+            sql_conditon = " and ".join(condition_list)
+            sql = "DELETE FROM {table_name} WHERE {condition}".format(field_name=sql_field_name, table_name=self.__table__, condition=sql_conditon)
+        else:
+            sql = "DELETE FROM {table_name} ".format(table_name=self.__table__)
+        print(sql)
+        async with request.app.db.transaction(request) as cur:
+            data = await cur.execute(sql)
+            return data
+
+
     async def raw_sql(self, request, raw_sql):
         async with request.app.db.acquire(request) as cur:
             data = await cur.execute(raw_sql)
