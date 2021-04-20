@@ -35,7 +35,7 @@ def do_setup():
             "requests==2.21.0",
             "aioredis==1.2.0",
             "opentracing==2.0.0",
-            "asyncpg==0.18.3",
+            "asyncpg==0.21.0",
             "aiohttp==3.5.4"
         ],
         setup_requires=[
