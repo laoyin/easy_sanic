@@ -31,7 +31,7 @@ def do_setup():
         scripts=[],
         install_requires=[
             "sanic==0.8.3",
-            "PyJWT==1.7.1",
+            "PyJWT==2.4.0",
             "requests==2.21.0",
             "aioredis==1.2.0",
             "opentracing==2.0.0",
