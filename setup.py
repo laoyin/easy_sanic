@@ -30,7 +30,7 @@ def do_setup():
         zip_safe=False,
         scripts=[],
         install_requires=[
-            "sanic==0.8.3",
+            "sanic==20.12.7",
             "PyJWT==1.7.1",
             "requests==2.21.0",
             "aioredis==1.2.0",
